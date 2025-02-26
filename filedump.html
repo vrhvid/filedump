@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <form id="form">
+            <p style="text-align: center;">Izberi datoteko za nalaganje.<br>Datoteke na strežniku ostanejo 7 dni.</p>																																							
+            <p style="text-align: center;"><input id="fot" type="file" name="fot"></p>
+            <input type="submit" value="Naloži datoteko" name="submit" style="text-align: center;"/>
+        </form>
+    </body>
+    <script>
+        $("#form").on('submit',(function(e) {				//prirejeno po sprejetem odgovoru na vprašanje na https://stackoverflow.com/questions/38747572/post-and-files-empty-after-ajax-file-upload
+            e.preventDefault();
+            $.ajax({
+                url: "../../DATABASE/db.php?id=letalo",
+                type: "POST",
+                data:  new FormData(this),
+                contentType: false,
+                processData: false,
+                success: function(data){
+                    if(data != 'uspeh'){
+                        var span = $("#dbnapaka").children('span');
+                        span.html(data);
+                        span.css({"visibility" : "visible"});
+                    } else {
+                        location.reload(true);
+                    }
+                }           
+            });
+        }));	
+    </script>
+</html>
