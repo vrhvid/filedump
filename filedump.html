@@ -12,8 +12,7 @@
         </form>
     </body>
     <script type="text/javascript">
-            console.log("test1");
-            $("#form").on('submit',(function(e) {				//prirejeno po sprejetem odgovoru na vprašanje na https://stackoverflow.com/questions/38747572/post-and-files-empty-after-ajax-file-upload
+            $("#form").on('submit',(function(e) {	
                 e.preventDefault();
                 $.ajax({
                     url: "server.php",
@@ -22,7 +21,6 @@
                     contentType: false,
                     processData: false,
                     success: function(data){
-                        console.log("test2");
                     }           
                 });
             }));
