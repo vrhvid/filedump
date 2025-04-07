@@ -5,25 +5,25 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
-        <form id="form">
-            <p style="text-align: center;">Izberi datoteko za nalaganje.<br>Datoteke na strežniku ostanejo 7 dni.</p>																																							
-            <p style="text-align: center;"><input type="file" name="uploadedfile"></p>
-            <p style="text-align: center;"><input type="submit" value="Naloži datoteko" name="submit"/></p>
-        </form>
-    </body>
-    <script type="text/javascript">
-            $("#form").on('submit',(function(e) {	
-                e.preventDefault();
-                $.ajax({
-                    url: "server.php",
-                    type: "POST",
-                    data:  new FormData(this),
-                    contentType: false,
-                    processData: false,
-                    success: function(data){
-                    }           
-                });
-            }));
-        
+        <script type="text/javascript">
+            window.onload = function(){          
+                $ ("#form").on('submit',(function(e) {	
+                    e.preventDefault();
+                    $.ajax({
+                        url: "http://90.157.232.29/filedumpres/server.php",
+                        type: "POST",
+                        data:  new FormData(this),
+                        contentType: false,
+                        processData: false,
+                        success: function(data){
+                            location.reload();
+                        }          
+                    });
+                }));
+            }       
     </script>
-</html>
+    <form id="form">
+        <p style="text-align: center;">Izberi datoteko za nalaganje.<br>Datoteke na strežniku ostanejo 7 dni.</p>																																							
+        <p style="text-align: center;"><input type="file" name="uploadedfile"/></p>
+        <p style="text-align: center;"><input type="submit" name="submit"/></p>
+    </form>
